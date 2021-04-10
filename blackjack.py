@@ -1,5 +1,7 @@
 import random
 import time
+def sleep(sleep_time):
+    time.sleep(sleep_time)
 
 
 start_loop = True
@@ -11,13 +13,13 @@ elif start == "y":
     print("Ok!")
     time.sleep(0.2)
     start_loop == False
-elif True:
+else:
     print("Thats invalid!")
     time.sleep(0.2)
     exit
-Computer_number = random.randint(17, 24)
-cards_part_a = random.randint(1,10)
-cards_part_b = random.randint(1,10)
+computer_cards = random.randint(17, 24)  # The computers total
+cards_part_a = random.randint(1,10)  # 2 parts of the "cards" var, used to auto check for aces
+cards_part_b = random.randint(1,10) 
 if cards_part_a == 1:
     if cards_part_b + 11 <= 21:
         cards_part_a = 11
@@ -25,34 +27,34 @@ if cards_part_b == 1:
     if cards_part_a + 11 <= 21:
         cards_part_b = 11
 cards = cards_part_a + cards_part_b
-win_or_lose = False
+win_or_lose = False  # Is the game over?
 print("You have:", cards)
 while win_or_lose == False:
     hit_or_stay = input("Hit or stay? (h/s)")
     if hit_or_stay == "h":
         cards = cards + random.randint(1,10)
         if cards > 21:
-            print("You lose! You were:", cards-21, "over 21!")
-            win_or_lose = True
+            print("You lose! You were:", cards - 21, "over 21!")
+            win_or_lose = True  # The game finished
         print("You have:", cards)
     elif hit_or_stay == "s":
         if cards > 21:
-            print("You lose! You were:", cards-21, "over21!")
+            print("You lose! You were:", cards - 21, "over21!")
             win_or_lose = True
-        elif Computer_number > 21:
-            print("You win! The computer was", Computer_number-21, "over 21!")
+        elif computer_cards > 21:
+            print("You win! The computer was", computer_cards - 21, "over 21!")
             win_or_lose = True
-        elif cards > Computer_number:
-            print("You win! Your number was:", cards-Computer_number, "over the computer's number!")
+        elif cards > computer_cards:
+            print("You win! Your number was:", cards-computer_cards, "over the computer's number!")
             win_or_lose = True
-        elif cards < Computer_number:
-            print("You lose! You number was:", Computer_number-cards, "under the computer's number!")
+        elif cards < computer_cards:
+            print("You lose! You number was:", computer_cards-cards, "under the computer's number!")
             win_or_lose = True
-        elif cards == Computer_number:
+        elif cards == computer_cards:
             print("Draw! Your number and the computer's number were both:", cards)
             win_or_lose == True
     elif hit_or_stay != "s":
         exit("invalid lol")
-print("End...")
-time.sleep(1)
+print("Ending...")
+input("Press any button to end...")
 exit
